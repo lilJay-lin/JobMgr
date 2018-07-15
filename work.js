@@ -61,7 +61,7 @@ var sendEmail = function(email, content, title, type){
 }
 
 // 提前提醒
-schedule.scheduleJob({hour: 21, minute: 0}, function () {
+schedule.scheduleJob('00 00 21 * * *', function () {
     var date = new Date()
     date.setDate(date.getDate() + 1)
     var ret = util.checkBanChi(date.getFullYear() + '-' + (util.padd(date.getMonth() + 1)) + '-' + util.padd(date.getDate()))
@@ -76,25 +76,25 @@ function checkToday () {
     return util.checkBanChi(date.getFullYear() + '-' + (util.padd(date.getMonth() + 1)) + '-' + util.padd(date.getDate()))
 }
 
-schedule.scheduleJob({hour: 7, minute:30}, function () {
+schedule.scheduleJob('00 30 7 * * *', function () {
     let ret = checkToday()
     if (ret.ban.indexOf('早班') > -1) {
         sendEmail('lin_xjie@foxmail.com', '今天(' + ret.date + ')班次:' + ret.ban, '上班提醒')
     }
 })
-schedule.scheduleJob({hour: 11, minute:0}, function () {
+schedule.scheduleJob('00 00 11 * * *', function () {
     let ret = checkToday()
     if (ret.ban.indexOf('中班') > -1) {
         sendEmail('lin_xjie@foxmail.com', '今天(' + ret.date + ')班次:' + ret.ban, '上班提醒')
     }
 })
-schedule.scheduleJob({hour: 17, minute:0}, function () {
+schedule.scheduleJob('00 00 17 * * *', function () {
     let ret = checkToday()
     if (ret.ban.indexOf('晚班') > -1) {
         sendEmail('lin_xjie@foxmail.com', '今天(' + ret.date + ')班次:' + ret.ban, '上班提醒')
     }
 })
-schedule.scheduleJob({hour: 18, minute:0}, function () {
+schedule.scheduleJob('00 00 18 * * *', function () {
     let ret = checkToday()
     if (ret.ban.indexOf('夜班') > -1) {
         sendEmail('lin_xjie@foxmail.com', '今天(' + ret.date + ')班次:' + ret.ban, '上班提醒')
