@@ -1,7 +1,7 @@
 /**
  * Created by liljay on 2018/7/15.
  */
-const start = new Date('2018-07-02')
+const start = new Date('2019-01-13')
 function checkBanChi (datastr) {
     // 我的班3n + 1
     let changeDate = new Date(datastr)
