@@ -21,7 +21,7 @@ var sendEmail = function(email, content, title, type){
             auth: {
                 user: '286096780@qq.com',
                 //这里密码不是qq密码，是你设置的smtp密码
-                pass: 'fmjdfaytebxkbhif'
+                pass: '****'
             }
         });
 // NB! No need to recreate the transporter object. You can use
