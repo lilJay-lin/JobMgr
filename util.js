@@ -2,10 +2,12 @@
  * Created by liljay on 2018/7/15.
  */
 const start = new Date('2019-01-13')
+const dayTip = ['日', '一', '二', '三', '四', '五', '六']
 function checkBanChi (datastr) {
     // 我的班3n + 1
     let changeDate = new Date(datastr)
     let setDate = new Date(datastr)
+    let day = '星期'+ dayTip[changeDate.getDay()]
     var dur = parseInt((changeDate - start) / 24 / 60 / 60 / 1000)
     changeDate.setDate(changeDate.getDate() - dur % 6)
     var changeDur = parseInt((setDate - changeDate) / 24 / 60 / 60 / 1000)
@@ -13,10 +15,10 @@ function checkBanChi (datastr) {
     var ret = {message: '', status: 1, ban: '', date: datastr}
     if (changeDur === 3 || changeDur === 0) {
         ret.status = 2
-        ret.message = '注意！！当天(' + datastr + ')是交接班 <br\> '
+        ret.message = '注意！！当天' + day + '(' + datastr + ')是交接班 <br\> '
     } else if (changeDur > 3) {
         ret.status = 0
-        ret.message = '今日无班,离上班还有：' + (6 - changeDur) + '天'
+        ret.message = '今日' + day + '无班,离上班还有：' + (6 - changeDur) + '天'
         console.log(ret.message)
         return ret
     }
@@ -26,7 +28,7 @@ function checkBanChi (datastr) {
     if (ret.ban.indexOf('早班') === -1 && changeDur >= 3) {
         ret.ban = '无班'
     }
-    ret.message += '当天(' + datastr + ')班次：'  + ret.ban
+    ret.message += '当天' + day + '(' + datastr + ')班次：'  + ret.ban
     console.log(ret.message)
     return ret
 }
